@@ -19,10 +19,22 @@ public class MarkdownParse {
             if (openBracket == -1 || closeBracket == -1 || openParen == -1 || closeParen == -1) {
                 break;
             }
-            toReturn.add(markdown.substring(openParen + 1, closeParen));
-            currentIndex = closeParen + 1;
-        }
+            if(openBracket != 0) {
+                char character = markdown.charAt(openBracket - 1);
+                if(character == '!') {
+                    currentIndex = closeParen +1;
+                    continue;
+                }
+            }
 
+            String substring = markdown.substring(openParen + 1, closeParen);
+            if(substring.contains(".")) {
+                toReturn.add(substring);
+            }
+            //toReturn.add(markdown.substring(openParen + 1, closeParen));
+            currentIndex = closeParen + 1;
+    
+        }
         return toReturn;
     }
 
