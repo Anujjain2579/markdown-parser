@@ -26,7 +26,10 @@ public class MarkdownParse {
                     continue;
                 }
             }
-
+            if (closeBracket + 1 != openParen) {
+                currentIndex += 1;
+                continue;
+            }
             String substring = markdown.substring(openParen + 1, closeParen);
             if(substring.contains(".")) {
                 toReturn.add(substring);
