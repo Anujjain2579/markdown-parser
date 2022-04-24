@@ -28,6 +28,11 @@ public class MarkdownParse {
                     continue;
                 }
             }
+            // Bracket and Parenthesis should be consecutive
+            if (closeBracket + 1 != openParen) {
+                currentIndex += 1;
+                continue;
+            }
             String substring = markdown.substring(openParen + 1, closeParen);
             //Link should contain "."
             if(substring.contains(".")) {
