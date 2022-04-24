@@ -1,3 +1,3 @@
 this file has
-``` [1,2,3] is (cool Array)
+[1,2,3](cool Array)
 [Link]()
