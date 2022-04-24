@@ -20,6 +20,14 @@ public class MarkdownParse {
             if (openBracket == -1 || closeBracket == -1 || openParen == -1 || closeParen == -1) {
                 break;
             }
+            // To differentiate between a link and image
+            if(openBracket != 0) {
+                char character = markdown.charAt(openBracket - 1);
+                if(character == '!') {
+                    currentIndex = closeParen +1;
+                    continue;
+                }
+            }
             String substring = markdown.substring(openParen + 1, closeParen);
             //Link should contain "."
             if(substring.contains(".")) {
