@@ -36,7 +36,9 @@ public class MarkdownParse {
             String substring = markdown.substring(openParen + 1, closeParen);
             //Link should contain "."
             if(substring.contains(".")) {
-                toReturn.add(substring);
+                if(!substring.contains("..")) {
+                    toReturn.add(substring);
+                }
             }
             currentIndex = closeParen + 1;
 
