@@ -28,7 +28,7 @@ public class MarkdownParse {
                     continue;
                 }
             }
-            Bracket and Parenthesis should be consecutive
+            //Bracket and Parenthesis should be consecutive
             if (closeBracket + 1 != openParen) {
                 currentIndex += 1;
                 continue;
