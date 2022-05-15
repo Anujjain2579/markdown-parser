@@ -98,6 +98,11 @@ public class MarkdownParseTest {
     public void GivenFileTest8() throws IOException {
             assertEquals(List.of(), getLinksResult("test-file8.md"));
     }
+    @Test
+    public void testSpaceAfterParen() {
+        String contents = "[title]( space-in-url.com)";
+        List<String> expect = List.of("space-in-url.com");
+        assertEquals(expect, MarkdownParse.getLinks(contents));
+    }
     
 }
-//Edit
