@@ -19,7 +19,7 @@ public class MarkdownParse {
 
             if (openBracket == -1 || closeBracket == -1 || openParen == -1 || closeParen == -1) {
                 break;
-            }
+            } 
             // To differentiate between a link and image
             if(openBracket != 0) {
                 char character = markdown.charAt(openBracket - 1);
@@ -28,20 +28,39 @@ public class MarkdownParse {
                     continue;
                 }
             }
+            int repeat = 1;
+            while(markdown.charAt(closeParen-repeat) == '(' && markdown.charAt(closeParen+repeat) == ')') {
+                repeat++;
+            }
+            closeParen += repeat-1;
             //Bracket and Parenthesis should be consecutive
             if (closeBracket + 1 != openParen) {
-                currentIndex += 1;
-                continue;
+                if(markdown.charAt(closeBracket - 1) != '\\') {
+                    currentIndex += 1;
+                    continue;
+                }
             }
             String substring = markdown.substring(openParen + 1, closeParen);
             //Link should contain "."
             if(substring.contains(".")) {
                 if(!substring.contains("..")) {
-                    toReturn.add(substring);
+                    for ( int z = openParen +1 ; z < closeParen ; z++) {
+                        if(markdown.charAt(z) == '\n') {
+                            substring = "";
+                            substring = markdown.substring(openParen + 1, z) + markdown.substring(z+ 1, closeParen);
+                        }
+                        if(substring.charAt(z) == '`') {
+                            substring = "";
+                            substring = markdown.substring(openParen + 1, z) + "%60" + markdown.substring(z+ 1, closeParen);
+                        }
+                    }
+                    
+
+                    }
+                    toReturn.add(substring.trim());
                 }
             }
             currentIndex = closeParen + 1;
-
         }
         return toReturn;
     }

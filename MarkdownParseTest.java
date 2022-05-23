@@ -6,6 +6,8 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.*;
 
+//javac -cp .:lib/junit-4.13.2.jar:lib/hamcrest-core-1.3.jar MarkdownParseTest.java
+//java -cp .:lib/junit-4.13.2.jar:lib/hamcrest-core-1.3.jar org.junit.runner.JUnitCore MarkdownParseTest
 public class MarkdownParseTest {
     public static ArrayList<String> getLinksResult(String filepath) throws IOException {
         Path fileName = Path.of(filepath);
@@ -99,10 +101,15 @@ public class MarkdownParseTest {
             assertEquals(List.of(), getLinksResult("test-file8.md"));
     }
     @Test
-    public void testSpaceAfterParen() {
-        String contents = "[title]( space-in-url.com)";
-        List<String> expect = List.of("space-in-url.com");
-        assertEquals(expect, MarkdownParse.getLinks(contents));
+    public void Snippet1() throws IOException {
+            assertEquals(List.of("%60google.com", "google.com", "ucsd.edu"), getLinksResult("test-file9-LR4.md"));
     }
-    
+    @Test
+    public void Snippet2() throws IOException {
+            assertEquals(List.of("a.com", "a.com(())","example.com"), getLinksResult("test-file10-LR4.md"));
+    }
+    @Test
+    public void Snippet3() throws IOException {
+            assertEquals(List.of("https://www.twitter.com", "https://sites.google.com/eng.ucsd.edu/cse-15l-spring-2022/schedule"), getLinksResult("test-file11-LR4.md"));
+    }
 }
