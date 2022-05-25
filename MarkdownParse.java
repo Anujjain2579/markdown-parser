@@ -49,13 +49,10 @@ public class MarkdownParse {
                             substring = "";
                             substring = markdown.substring(openParen + 1, z) + markdown.substring(z+ 1, closeParen);
                         }
-                        if(substring.charAt(z) == '`') {
-                            substring = "";
-                            substring = markdown.substring(openParen + 1, z) + "%60" + markdown.substring(z+ 1, closeParen);
-                        }
-                    }
-                    
-
+                        // if(substring.charAt(z) == '`') {
+                        //     substring = "";
+                        //     substring = markdown.substring(openParen + 1, z) + "%60" + markdown.substring(z+ 1, closeParen);
+                        // }
                     }
                     toReturn.add(substring.trim());
                 }
