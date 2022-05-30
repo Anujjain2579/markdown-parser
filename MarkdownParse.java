@@ -53,6 +53,8 @@ public class MarkdownParse {
                         //     substring = "";
                         //     substring = markdown.substring(openParen + 1, z) + "%60" + markdown.substring(z+ 1, closeParen);
                         // }
+                        //OR 
+                        //int ascii = (int) character;
                     }
                     toReturn.add(substring.trim());
                 }
